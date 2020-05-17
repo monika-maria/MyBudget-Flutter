@@ -51,7 +51,7 @@ class _TabBarNavigationState extends State<TabBarNavigation> {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       currentIndex: currentIndex,
-      selectedItemColor: kSecondaryColor,
+      selectedItemColor: Color(0xFF660066),
       showSelectedLabels: false,
       showUnselectedLabels: false,
       iconSize: 30,
