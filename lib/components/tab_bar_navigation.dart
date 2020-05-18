@@ -67,7 +67,7 @@ class _TabBarNavigationState extends State<TabBarNavigation> {
       items: [
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.info,
+            Icons.home,
           ),
           title: Text(
             'Statystyki',
@@ -75,7 +75,7 @@ class _TabBarNavigationState extends State<TabBarNavigation> {
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.monetization_on,
+            Icons.style,
           ),
           title: Text(
             'Wydatki',
@@ -83,7 +83,7 @@ class _TabBarNavigationState extends State<TabBarNavigation> {
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.bookmark_border,
+            Icons.cloud, //slow_motion_video,
           ),
           title: Text(
             'Zlecenia',
@@ -91,7 +91,7 @@ class _TabBarNavigationState extends State<TabBarNavigation> {
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.account_balance_wallet,
+            Icons.account_balance,
           ),
           title: Text(
             'Konto',

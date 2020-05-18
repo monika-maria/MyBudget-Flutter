@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mybudget/constants.dart';
 import 'package:mybudget/components/tab_bar_navigation.dart';
+import 'package:mybudget/models/Expense.dart';
 
 class ExpenseScreen extends StatefulWidget {
   static const String id = '/expense_screen';
@@ -20,6 +22,17 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Expense arguments =
+        ModalRoute.of(context).settings.arguments as Expense;
+    final int expenseId = arguments.expenseId;
+    final String name = arguments.name;
+    final String description = arguments.description;
+    final double amount = arguments.amount;
+    final String date =
+        DateFormat('yyyy-MM-dd').format(DateTime.parse(arguments.date));
+    final String categoryName = arguments.categoryName;
+    final String color = arguments.color;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(

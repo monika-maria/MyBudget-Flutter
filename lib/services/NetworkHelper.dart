@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:mybudget/models/Expense.dart';
 import 'package:mybudget/models/SumCategory.dart';
 import 'package:mybudget/models/Statistics.dart';
 import 'dart:convert';
@@ -28,18 +29,17 @@ class NetworkHelper {
     return parsed.map<Statistics>((json) => Statistics.fromJson(json)).toList();
   }
 
-  //Pobieranie statystyk do Kategorii
-  static Future<List<SumCategory>> getCategories() async {
+  //Pobieranie wydatków
+  static Future<List<Expense>> getExpenses() async {
     try {
       final response = await http.get(
-          '$url/statistics/sumCategory?dateFrom=2020-01-01&dateTo=2020-05-30');
+          '$url/expenses?dateFrom=2020-01-01&dateTo=2020-05-30');
       if (response.statusCode == 200) {
         print('200');
-        List<SumCategory> list =
-            parseCategories(utf8.decode(response.bodyBytes));
+        List<Expense> list =
+            parseExpenses(utf8.decode(response.bodyBytes));
         return list;
       } else {
-        print('else');
         throw Exception("Failed to load Categories");
       }
     } catch (e) {
@@ -47,10 +47,10 @@ class NetworkHelper {
     }
   }
 
-  static List<SumCategory> parseCategories(String responseBody) {
+  static List<Expense> parseExpenses(String responseBody) {
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
     return parsed
-        .map<SumCategory>((json) => SumCategory.fromJson(json))
+        .map<Expense>((json) => Expense.fromJson(json))
         .toList();
   }
 }

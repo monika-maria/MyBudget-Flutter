@@ -51,6 +51,28 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           style: kAppBarTextStyle,
         ),
         backgroundColor: kSecondaryColor,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.calendar_today,
+              color: Color(0xFF660066), //Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              final List<DateTime> picked = await DateRagePicker.showDatePicker(
+                  context: context,
+                  initialFirstDate: dateFrom,
+                  initialLastDate: dateTo,
+                  firstDate: DateTime(2015),
+                  lastDate: DateTime(2090));
+              if (picked != null && picked.length == 2) {
+                setState(() {
+                  updateDates(picked.elementAt(0), picked.elementAt(1));
+                });
+              }
+            },
+          ),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -76,23 +98,23 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                   margin: EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
                     color: Colors.black12,
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(40.0),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Icon(
-                        Icons.calendar_today,
-                        color: Color(0xFF660066), //Colors.white,
-                        size: 40.0,
-                      ),
+//                      Icon(
+//                        Icons.calendar_today,
+//                        color: Color(0xFF660066), //Colors.white,
+//                        size: 40.0,
+//                      ),
                       SizedBox(
                         width: 20.0,
                       ),
                       Text(
                         '$dateFromString' + ' do ',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           color: Colors.white,
                           fontFamily: 'Lato',
                         ),
@@ -100,7 +122,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                       Text(
                         '$dateToString',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           color: Colors.white,
                           fontFamily: 'Lato',
                         ),
@@ -173,7 +195,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                 margin: EdgeInsets.all(15.0),
                 decoration: BoxDecoration(
                   color: Colors.black12,
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(40.0),
                 ),
                 child: Icon(
                   Icons.calendar_today,
@@ -187,7 +209,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
       floatingActionButton: FloatingActionButton(
 //        onPressed: ExpenseAddScreen.id,
         child: Icon(
-          Icons.add_shopping_cart,
+          Icons.loupe, //t,
         ),
         backgroundColor: kSecondaryColor,
         elevation: 0,

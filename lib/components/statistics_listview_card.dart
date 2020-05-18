@@ -14,25 +14,26 @@ class StatisticsListViewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(12.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
             categoryName.toUpperCase(),
             style: TextStyle(
-              fontSize: 28,
+              fontSize: 20,
               color: Color(int.parse(color.replaceAll('#', '0xFF'))),
               fontFamily: 'Lato',
               fontWeight: FontWeight.w600,
             ),
           ),
           SizedBox(
-            height: 30.0,
+            height: 15.0,
           ),
           Text(
             amount.toString() + ' zł',
             style: TextStyle(
-              fontSize: 28,
+              fontSize: 24,
               color: Color(int.parse(color.replaceAll('#', '0xFF'))),
               fontFamily: 'Lato',
               fontWeight: FontWeight.w600,
@@ -43,7 +44,7 @@ class StatisticsListViewCard extends StatelessWidget {
       margin: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
         color: Color(0xFFE7E4F0),
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(40.0),
       ),
     );
   }
