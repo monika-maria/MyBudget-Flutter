@@ -52,7 +52,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              Icons.calendar_today,
+              Icons.search,
               color: Color(0xFF660066), //Colors.white,
               size: 30.0,
             ),
@@ -101,11 +101,11 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-//                      Icon(
-//                        Icons.calendar_today,
-//                        color: Color(0xFF660066), //Colors.white,
-//                        size: 40.0,
-//                      ),
+                      Icon(
+                        Icons.calendar_today,
+                        color: Color(0xFF660066), //Colors.white,
+                        size: 35.0,
+                      ),
                       SizedBox(
                         width: 20.0,
                       ),

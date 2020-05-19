@@ -51,28 +51,28 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           style: kAppBarTextStyle,
         ),
         backgroundColor: kSecondaryColor,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.calendar_today,
-              color: Color(0xFF660066), //Colors.white,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              final List<DateTime> picked = await DateRagePicker.showDatePicker(
-                  context: context,
-                  initialFirstDate: dateFrom,
-                  initialLastDate: dateTo,
-                  firstDate: DateTime(2015),
-                  lastDate: DateTime(2090));
-              if (picked != null && picked.length == 2) {
-                setState(() {
-                  updateDates(picked.elementAt(0), picked.elementAt(1));
-                });
-              }
-            },
-          ),
-        ],
+//        actions: <Widget>[
+//          IconButton(
+//            icon: Icon(
+//              Icons.calendar_today,
+//              color: Color(0xFF660066), //Colors.white,
+//              size: 30.0,
+//            ),
+//            onPressed: () async {
+//              final List<DateTime> picked = await DateRagePicker.showDatePicker(
+//                  context: context,
+//                  initialFirstDate: dateFrom,
+//                  initialLastDate: dateTo,
+//                  firstDate: DateTime(2015),
+//                  lastDate: DateTime(2090));
+//              if (picked != null && picked.length == 2) {
+//                setState(() {
+//                  updateDates(picked.elementAt(0), picked.elementAt(1));
+//                });
+//              }
+//            },
+//          ),
+//        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -103,11 +103,11 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-//                      Icon(
-//                        Icons.calendar_today,
-//                        color: Color(0xFF660066), //Colors.white,
-//                        size: 40.0,
-//                      ),
+                      Icon(
+                        Icons.calendar_today,
+                        color: Color(0xFF660066), //Colors.white,
+                        size: 35.0,
+                      ),
                       SizedBox(
                         width: 20.0,
                       ),
@@ -165,10 +165,11 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                         child: Text(
                           'Brak kategorii',
                           style: TextStyle(
-                              fontSize: 26,
-                              color: Colors.black.withOpacity(0.4),
-                              fontWeight: FontWeight.w600,
-                              fontFamily: 'Lato'),
+                            fontSize: 26,
+                            color: Colors.black.withOpacity(0.4),
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'Lato',
+                          ),
                         ),
                       ),
                     ],
