@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_file.dart';
 import 'package:intl/intl.dart';
+import 'package:mybudget/components/floating_action_button.dart';
 import 'package:mybudget/components/statistics_listview_card.dart';
 import 'package:mybudget/constants.dart';
 import 'package:mybudget/components/tab_bar_navigation.dart';
@@ -46,9 +47,11 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Statystyki',
-          style: kAppBarTextStyle,
+        title: Center(
+          child: Text(
+            'Statystyki',
+            style: kAppBarTextStyle,
+          ),
         ),
         backgroundColor: kSecondaryColor,
 //        actions: <Widget>[
@@ -106,7 +109,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                       Icon(
                         Icons.calendar_today,
                         color: Color(0xFF660066), //Colors.white,
-                        size: 35.0,
+                        size: 30.0,
                       ),
                       SizedBox(
                         width: 20.0,
@@ -132,7 +135,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
             ),
           ),
           Expanded(
-            flex: 7,
+            flex: 5,
             child: statistics != null
                 ? ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -207,14 +210,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-//        onPressed: ExpenseAddScreen.id,
-        child: Icon(
-          Icons.loupe, //t,
-        ),
-        backgroundColor: kSecondaryColor,
-        elevation: 0,
-      ),
+      floatingActionButton: getFloatingActionButton(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: TabBarNavigation(
         currentIndex: StatisticsScreen.index,

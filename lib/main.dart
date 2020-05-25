@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mybudget/screens/categories_screen.dart';
+import 'package:mybudget/screens/expense_add_screen.dart';
 import 'constants.dart';
 import "screens/account_screen.dart";
 import "screens/expenses_screen.dart";
@@ -18,7 +20,9 @@ class MyBudgetApp extends StatelessWidget {
         StatisticsScreen.id: (context) => StatisticsScreen(),
         ExpensesScreen.id: (context) => ExpensesScreen(),
         OrdersScreen.id: (context) => OrdersScreen(),
-        AccountScreen.id: (context) => AccountScreen()
+        AccountScreen.id: (context) => AccountScreen(),
+        ExpenseAddScreen.id: (context) => ExpenseAddScreen(),
+        CategoriesScreen.id: (context) => CategoriesScreen()
       },
     );
   }

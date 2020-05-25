@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mybudget/components/expenses_card.dart';
+import 'package:mybudget/components/floating_action_button.dart';
 import 'package:mybudget/constants.dart';
 import 'package:mybudget/components/tab_bar_navigation.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 import 'package:mybudget/models/Expense.dart';
+import 'package:mybudget/screens/expense_screen.dart';
 import 'package:mybudget/services/NetworkHelper.dart';
 import 'package:mybudget/components/statistics_listview_card.dart';
 
@@ -44,33 +46,35 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Wydatki',
-          style: kAppBarTextStyle,
+        title: Center(
+          child: Text(
+            'Wydatki',
+            style: kAppBarTextStyle,
+          ),
         ),
         backgroundColor: kSecondaryColor,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.search,
-              color: Color(0xFF660066), //Colors.white,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              final List<DateTime> picked = await DateRagePicker.showDatePicker(
-                  context: context,
-                  initialFirstDate: dateFrom,
-                  initialLastDate: dateTo,
-                  firstDate: DateTime(2015),
-                  lastDate: DateTime(2090));
-              if (picked != null && picked.length == 2) {
-                setState(() {
-                  updateDates(picked.elementAt(0), picked.elementAt(1));
-                });
-              }
-            },
-          ),
-        ],
+//        actions: <Widget>[
+//          IconButton(
+//            icon: Icon(
+//              Icons.search,
+//              color: Color(0xFF660066), //Colors.white,
+//              size: 30.0,
+//            ),
+//            onPressed: () async {
+//              final List<DateTime> picked = await DateRagePicker.showDatePicker(
+//                  context: context,
+//                  initialFirstDate: dateFrom,
+//                  initialLastDate: dateTo,
+//                  firstDate: DateTime(2015),
+//                  lastDate: DateTime(2090));
+//              if (picked != null && picked.length == 2) {
+//                setState(() {
+//                  updateDates(picked.elementAt(0), picked.elementAt(1));
+//                });
+//              }
+//            },
+//          ),
+//        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -104,7 +108,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
                       Icon(
                         Icons.calendar_today,
                         color: Color(0xFF660066), //Colors.white,
-                        size: 35.0,
+                        size: 30.0,
                       ),
                       SizedBox(
                         width: 20.0,
@@ -176,14 +180,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-//        onPressed: ExpenseAddScreen.id,
-        child: Icon(
-          Icons.add_shopping_cart,
-        ),
-        backgroundColor: kSecondaryColor,
-        elevation: 0,
-      ),
+      floatingActionButton: getFloatingActionButton(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: TabBarNavigation(
         currentIndex: ExpensesScreen.index,

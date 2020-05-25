@@ -58,7 +58,7 @@ class _TabBarNavigationState extends State<TabBarNavigation> {
       unselectedItemColor: Colors.white,
       type: BottomNavigationBarType.fixed,
       backgroundColor: Colors.white.withOpacity(0.2),
-      elevation: 10,
+      elevation: 20,
       onTap: (index) {
         setState(() {
           changeScreen(index);

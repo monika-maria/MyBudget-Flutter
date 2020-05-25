@@ -7,7 +7,7 @@ const kSecondaryColor = Color(0xFFC0ADDB); //Color(0xFFBE80FF);
 
 // Tekst w AppBar
 const kAppBarTextStyle = TextStyle(
-  fontSize: 26,
+  fontSize: 23,
   color: Colors.white,
 );
 

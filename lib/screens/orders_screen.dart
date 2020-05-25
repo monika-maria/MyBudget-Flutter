@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mybudget/components/floating_action_button.dart';
 import 'package:mybudget/constants.dart';
 import 'package:mybudget/components/tab_bar_navigation.dart';
 
@@ -22,13 +23,17 @@ class _OrdersScreenState extends State<OrdersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Stałe zlecenia',
-          style: kAppBarTextStyle,
+        title: Center(
+          child: Text(
+            'Stałe zlecenia',
+            style: kAppBarTextStyle,
+          ),
         ),
         backgroundColor: kSecondaryColor,
       ),
       body: Container(),
+      floatingActionButton: getFloatingActionButton(context),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: TabBarNavigation(
         currentIndex: OrdersScreen.index,
       ),

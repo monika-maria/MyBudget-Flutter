@@ -71,4 +71,22 @@ class NetworkHelper {
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
     return parsed.map<Account>((json) => Account.fromJson(json)).toList();
   }
+
+  //Aktualizowanie stanu konta
+  static Future<void> updateBalance(double amount) async {
+    try {
+      final response = await http.post('$url/account', body: {
+        "balance": amount,
+        "userId": 1,
+      });
+      if (response.statusCode == 201) {
+        final String responseString = response.body;
+        //return responseString;
+      } else {
+        throw Exception("Failed to load Categories");
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }

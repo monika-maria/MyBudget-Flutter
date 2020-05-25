@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mybudget/components/floating_action_button.dart';
 import 'package:mybudget/constants.dart';
 import 'package:mybudget/components/tab_bar_navigation.dart';
 import 'package:mybudget/models/Expense.dart';
@@ -42,6 +43,8 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
         backgroundColor: kSecondaryColor,
       ),
       body: Container(),
+      floatingActionButton: getFloatingActionButton(context),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: TabBarNavigation(
         currentIndex: ExpenseScreen.index,
       ),
