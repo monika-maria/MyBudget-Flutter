@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:mybudget/models/Category.dart';
 import 'package:mybudget/models/Expense.dart';
 import 'package:mybudget/models/SumCategory.dart';
 import 'package:mybudget/models/Statistics.dart';
@@ -88,5 +89,26 @@ class NetworkHelper {
     } catch (e) {
       throw Exception(e.toString());
     }
+  }
+
+  //Pobieranie kategorii
+  static Future<List<Category>> getCategories() async {
+    try {
+      final response = await http.get('$url/categories');
+      if (response.statusCode == 200) {
+        print('200');
+        List<Category> list = parseCategories(utf8.decode(response.bodyBytes));
+        return list;
+      } else {
+        throw Exception("Failed to load Categories");
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  static List<Category> parseCategories(String responseBody) {
+    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+    return parsed.map<Category>((json) => Category.fromJson(json)).toList();
   }
 }

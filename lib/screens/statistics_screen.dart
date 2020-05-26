@@ -98,40 +98,41 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                 }
               },
               child: Container(
-                  margin: EdgeInsets.all(15.0),
-                  decoration: BoxDecoration(
-                    color: Colors.black12,
-                    borderRadius: BorderRadius.circular(40.0),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        Icons.calendar_today,
-                        color: Color(0xFF660066), //Colors.white,
-                        size: 30.0,
+                margin: EdgeInsets.all(15.0),
+                decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(
+                      Icons.calendar_today,
+                      color: Color(0xFF660066), //Colors.white,
+                      size: 30.0,
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Text(
+                      '$dateFromString' + ' do ',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontFamily: 'Lato',
                       ),
-                      SizedBox(
-                        width: 20.0,
+                    ),
+                    Text(
+                      '$dateToString',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontFamily: 'Lato',
                       ),
-                      Text(
-                        '$dateFromString' + ' do ',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontFamily: 'Lato',
-                        ),
-                      ),
-                      Text(
-                        '$dateToString',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontFamily: 'Lato',
-                        ),
-                      ),
-                    ],
-                  )),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
           Expanded(

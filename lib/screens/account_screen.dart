@@ -140,6 +140,11 @@ class _AccountScreenState extends State<AccountScreen> {
                     color: Colors.white,
                   ),
                   hintText: 'WPROWADŹ KWOTĘ',
+                  hintStyle: TextStyle(
+                    color: Colors.white,
+//                          fontSize: 15.0,
+                    fontFamily: 'Lato',
+                  ),
                   filled: true,
                   fillColor: Colors.black12,
                 ),
