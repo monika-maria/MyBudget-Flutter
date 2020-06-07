@@ -43,8 +43,8 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
         backgroundColor: kSecondaryColor,
       ),
       body: Container(),
-      floatingActionButton: getFloatingActionButton(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+//      floatingActionButton: getFloatingActionButton(context),
+//      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: TabBarNavigation(
         currentIndex: ExpenseScreen.index,
       ),

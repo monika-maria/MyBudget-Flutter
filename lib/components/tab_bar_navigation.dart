@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mybudget/constants.dart';
+import 'package:mybudget/screens/account_screen.dart';
+import 'package:mybudget/screens/expense_add_screen.dart';
+import 'package:mybudget/screens/expenses_screen.dart';
 
 class TabBarNavigation extends StatefulWidget {
   TabBarNavigation({@required this.currentIndex});
@@ -27,21 +31,21 @@ class _TabBarNavigationState extends State<TabBarNavigation> {
       case 1:
         {
           Navigator.of(context).pushNamedAndRemoveUntil(
-              '/expenses_screen', (Route<dynamic> route) => false);
+              ExpenseAddScreen.id, (Route<dynamic> route) => false);
         }
         break;
 
       case 2:
         {
           Navigator.of(context).pushNamedAndRemoveUntil(
-              '/orders_screen', (Route<dynamic> route) => false);
+              ExpensesScreen.id, (Route<dynamic> route) => false);
         }
         break;
 
       case 3:
         {
           Navigator.of(context).pushNamedAndRemoveUntil(
-              '/account_screen', (Route<dynamic> route) => false);
+              AccountScreen.id, (Route<dynamic> route) => false);
         }
         break;
     }
@@ -75,20 +79,28 @@ class _TabBarNavigationState extends State<TabBarNavigation> {
         ),
         BottomNavigationBarItem(
           icon: Icon(
+            FontAwesomeIcons.plus,
+          ),
+          title: Text(
+            'Dodaj',
+          ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
             Icons.style,
           ),
           title: Text(
             'Wydatki',
           ),
         ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.cloud, //slow_motion_video,
-          ),
-          title: Text(
-            'Zlecenia',
-          ),
-        ),
+//        BottomNavigationBarItem(
+//          icon: Icon(
+//            Icons.cloud, //slow_motion_video,
+//          ),
+//          title: Text(
+//            'Zlecenia',
+//          ),
+//        ),
         BottomNavigationBarItem(
           icon: Icon(
             Icons.account_balance,

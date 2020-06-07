@@ -20,22 +20,22 @@ class ExpensesScreen extends StatefulWidget {
 
 class _ExpensesScreenState extends State<ExpensesScreen> {
   List<Expense> expenses;
-
-  @override
-  void initState() {
-    super.initState();
-    NetworkHelper.getExpenses().then((expensesFromServer) {
-      setState(() {
-        expenses = expensesFromServer;
-      });
-    });
-  }
-
   DateTime dateFrom = DateTime(DateTime.now().year, DateTime.now().month);
   DateTime dateTo = DateTime.now();
   String dateFromString = DateFormat('yyyy-MM-dd')
       .format(DateTime(DateTime.now().year, DateTime.now().month));
   String dateToString = DateFormat('yyyy-MM-dd').format(DateTime.now());
+
+  @override
+  void initState() {
+    super.initState();
+    NetworkHelper.getExpenses(dateFromString, dateToString)
+        .then((expensesFromServer) {
+      setState(() {
+        expenses = expensesFromServer;
+      });
+    });
+  }
 
   void updateDates(DateTime _dateFrom, DateTime _dateTo) {
     dateFromString = DateFormat('yyyy-MM-dd').format(_dateFrom);
@@ -180,8 +180,8 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
           ),
         ],
       ),
-      floatingActionButton: getFloatingActionButton(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+//      floatingActionButton: getFloatingActionButton(context),
+//      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: TabBarNavigation(
         currentIndex: ExpensesScreen.index,
       ),

@@ -10,6 +10,7 @@ import 'package:mybudget/screens/expense_add_screen.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 import 'package:mybudget/models/Statistics.dart';
 import 'package:mybudget/services/NetworkHelper.dart';
+import 'package:pie_chart/pie_chart.dart';
 
 class StatisticsScreen extends StatefulWidget {
   static const String id = '/';
@@ -21,24 +22,35 @@ class StatisticsScreen extends StatefulWidget {
 
 class _StatisticsScreenState extends State<StatisticsScreen> {
   Statistics statistics;
-
-  @override
-  void initState() {
-    super.initState();
-    NetworkHelper.getStatistics().then((statisticsFromServer) {
-      setState(() {
-        statistics = statisticsFromServer;
-      });
-    });
-  }
-
   DateTime dateFrom = DateTime(DateTime.now().year, DateTime.now().month);
   DateTime dateTo = DateTime.now();
   String dateFromString = DateFormat('yyyy-MM-dd')
       .format(DateTime(DateTime.now().year, DateTime.now().month));
   String dateToString = DateFormat('yyyy-MM-dd').format(DateTime.now());
+  Map<String, double> data = new Map();
+  List<Color> _colors = new List();
+
+  @override
+  void initState() {
+    super.initState();
+    NetworkHelper.getStatistics(dateFromString, dateToString)
+        .then((statisticsFromServer) {
+      setState(() {
+        print('init state');
+        statistics = statisticsFromServer;
+        statistics.sumCategoryList.forEach((element) => {
+              data.putIfAbsent(
+                  element.categoryName, () => element.amountCategory),
+              _colors
+                  .add(Color(int.parse(element.color.replaceAll('#', '0xFF'))))
+            });
+      });
+    });
+  }
 
   void updateDates(DateTime _dateFrom, DateTime _dateTo) {
+    dateFrom = _dateFrom;
+    dateTo = _dateTo;
     dateFromString = DateFormat('yyyy-MM-dd').format(_dateFrom);
     dateToString = DateFormat('yyyy-MM-dd').format(_dateTo);
   }
@@ -158,7 +170,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                       Center(
                         child: Icon(
                           Icons.announcement,
-                          size: 100,
+                          size: 50,
                           color: Colors.black.withOpacity(0.4),
                         ),
                       ),
@@ -167,7 +179,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                       ),
                       Center(
                         child: Text(
-                          'Brak kategorii',
+                          'Brak',
                           style: TextStyle(
                             fontSize: 26,
                             color: Colors.black.withOpacity(0.4),
@@ -181,38 +193,36 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           ),
           Expanded(
             flex: 10,
-            child: GestureDetector(
-              onTap: () async {
-                final List<DateTime> picked =
-                    await DateRagePicker.showDatePicker(
-                        context: context,
-                        initialFirstDate:
-                            DateTime(DateTime.now().year, DateTime.now().month),
-                        initialLastDate: DateTime.now(),
-//                            (DateTime.now()).add(Duration(days: 7)),
-                        firstDate: DateTime(2015),
-                        lastDate: DateTime(2090));
-                if (picked != null && picked.length == 2) {
-                  print(picked);
-                }
-              },
-              child: Container(
-                margin: EdgeInsets.all(15.0),
-                decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(40.0),
-                ),
-                child: Icon(
-                  Icons.calendar_today,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            child: (data != null && data.isNotEmpty)
+                ? PieChart(
+                    dataMap: data,
+                    colorList:
+                        _colors, // if not declared, random colors will be chosen
+                    animationDuration: Duration(milliseconds: 1500),
+                    chartLegendSpacing: 32.0,
+                    chartRadius: MediaQuery.of(context).size.width /
+                        2.7, //determines the size of the chart
+                    showChartValuesInPercentage: true,
+                    showChartValues: true,
+                    showChartValuesOutside: false,
+                    chartValueBackgroundColor: Colors.grey[200],
+                    showLegends: false,
+//                    legendPosition: LegendPosition
+//                        .right, //can be changed to top, left, bottom
+                    decimalPlaces: 1,
+                    showChartValueLabel: true,
+                    initialAngle: 0,
+                    chartValueStyle: defaultChartValueStyle.copyWith(
+                      color: Colors.blueGrey[900].withOpacity(0.9),
+                    ),
+                    chartType: ChartType.ring,
+                  )
+                : SizedBox(),
           ),
         ],
       ),
-      floatingActionButton: getFloatingActionButton(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+//      floatingActionButton: getFloatingActionButton(context),
+//      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: TabBarNavigation(
         currentIndex: StatisticsScreen.index,
       ),

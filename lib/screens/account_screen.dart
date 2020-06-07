@@ -181,8 +181,8 @@ class _AccountScreenState extends State<AccountScreen> {
           ),
         ],
       ),
-      floatingActionButton: getFloatingActionButton(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+//      floatingActionButton: getFloatingActionButton(context),
+//      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: TabBarNavigation(
         currentIndex: AccountScreen.index,
       ),

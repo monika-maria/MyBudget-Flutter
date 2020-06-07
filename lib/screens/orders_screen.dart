@@ -32,8 +32,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
         backgroundColor: kSecondaryColor,
       ),
       body: Container(),
-      floatingActionButton: getFloatingActionButton(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+//      floatingActionButton: getFloatingActionButton(context),
+//      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: TabBarNavigation(
         currentIndex: OrdersScreen.index,
       ),

@@ -310,8 +310,8 @@ class _ExpenseAddScreenState extends State<ExpenseAddScreen> {
           ),
         ],
       ),
-      floatingActionButton: getFloatingActionButton(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+//      floatingActionButton: getFloatingActionButton(context),
+//      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: TabBarNavigation(
         currentIndex: ExpenseAddScreen.index,
       ),
