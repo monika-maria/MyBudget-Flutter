@@ -37,4 +37,16 @@ class Expense {
       userId: json["userId"],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "expenseId": expenseId,
+      "name": name,
+      "description": description,
+      "amount": amount,
+      "date": date,
+      "categoryId": categoryId,
+      "userId": userId,
+    };
+  }
 }

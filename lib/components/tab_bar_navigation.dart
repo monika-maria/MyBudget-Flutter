@@ -4,6 +4,7 @@ import 'package:mybudget/constants.dart';
 import 'package:mybudget/screens/account_screen.dart';
 import 'package:mybudget/screens/expense_add_screen.dart';
 import 'package:mybudget/screens/expenses_screen.dart';
+import 'package:mybudget/screens/statistics_screen.dart';
 
 class TabBarNavigation extends StatefulWidget {
   TabBarNavigation({@required this.currentIndex});
@@ -23,8 +24,8 @@ class _TabBarNavigationState extends State<TabBarNavigation> {
     switch (index) {
       case 0:
         {
-          Navigator.of(context)
-              .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              StatisticsScreen.id, (Route<dynamic> route) => false);
         }
         break;
 

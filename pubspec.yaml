@@ -18,9 +18,6 @@ dependencies:
   search_widget: ^1.0.2
   flutter_custom_clippers: ^1.1.0
   flappy_search_bar: ^1.4.1
-#  firebase_core: ^0.4.4+3
-#  firebase_messaging: ^6.0.13
-#  firebase_auth: ^0.16.1
   http: ^0.12.0+4
   intl: ^0.16.1
   flutter_html: ^0.11.1

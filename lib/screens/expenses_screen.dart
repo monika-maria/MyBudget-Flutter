@@ -12,7 +12,7 @@ import 'package:mybudget/components/statistics_listview_card.dart';
 
 class ExpensesScreen extends StatefulWidget {
   static const String id = '/expenses_screen';
-  static const int index = 1;
+  static const int index = 2;
 
   @override
   _ExpensesScreenState createState() => _ExpensesScreenState();
@@ -40,6 +40,12 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
   void updateDates(DateTime _dateFrom, DateTime _dateTo) {
     dateFromString = DateFormat('yyyy-MM-dd').format(_dateFrom);
     dateToString = DateFormat('yyyy-MM-dd').format(_dateTo);
+    NetworkHelper.getExpenses(dateFromString, dateToString)
+        .then((expensesFromServer) {
+      setState(() {
+        expenses = expensesFromServer;
+      });
+    });
   }
 
   @override
@@ -100,7 +106,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
                   margin: EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
                     color: Colors.black12,
-                    borderRadius: BorderRadius.circular(40.0),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -6,7 +6,7 @@ import 'package:mybudget/screens/registration_screen.dart';
 import 'login_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  static const String id = 'welcome_screen';
+  static const String id = '/';
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
@@ -70,14 +70,14 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             ),
             RoundedButton(
               title: 'Logowanie',
-              colour: Colors.lightBlueAccent,
+              colour:  Color(0xFFC0ADDB),
               onPressed: () {
                 Navigator.pushNamed(context, LoginScreen.id);
               },
             ),
             RoundedButton(
               title: 'Rejestracja',
-              colour: Colors.blueAccent,
+              colour: Color(0xFF660066),
               onPressed: () {
                 Navigator.pushNamed(context, RegistrationScreen.id);
               },

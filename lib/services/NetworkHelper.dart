@@ -9,7 +9,7 @@ import 'dart:convert';
 
 import 'package:mybudget/models/User.dart';
 
-String url = 'http://tm.monikamaria.usermd.net/mybudget/api';
+String url = 'https://tm.monikamaria.usermd.net/mybudget/api';
 String emanresu = "qC53@bG*^";
 String drowssap = "45DFdd&@!b#S";
 String basicAuth = 'Basic ' + base64Encode(utf8.encode('$emanresu:$drowssap'));
@@ -82,6 +82,26 @@ class NetworkHelper {
     return parsed.map<Expense>((json) => Expense.fromJson(json)).toList();
   }
 
+  //Dodawanie wydatku
+  static Future<bool> addExpence(Expense expense) async {
+    try {
+      http.Response response = await http.post('$url/expense',
+        headers: {
+        'authorization': basicAuth,
+        'Content-Type' : 'application/json'
+      }, body: json.encode(expense.toJson()));
+      if (response.statusCode == 201) {
+        final String responseString = response.body;
+        return true;
+      } else {
+        print(response.statusCode);
+        throw Exception("Kod inny niż 201");
+      }
+    } catch (e) {
+      return true;
+    }
+  }
+
   //Pobieranie konta
   static Future<Account> getAccount() async {
     try {
@@ -104,22 +124,28 @@ class NetworkHelper {
   }
 
   //Aktualizowanie stanu konta
-  static Future<void> updateBalance(double amount) async {
+  static Future<bool> updateBalance(double amount) async {
     try {
-      final response = await http.post('$url/account', headers: {
-        'authorization': basicAuth
-      }, body: {
-        "balance": amount,
-        "userId": 1,
-      });
+      Map body = {
+        "balance" : amount
+      };
+
+      http.Response response = await http.put('$url/account', headers: {
+        'authorization': basicAuth,
+        'Content-Type' : 'application/json'
+      }, body: json.encode(body));
       if (response.statusCode == 201) {
-        final String responseString = response.body;
-        //return responseString;
+        //final String responseString = response.body;
+        //return getAccount();
+        print("poszło");
+        return true;
       } else {
-        throw Exception("Failed to load Categories");
+        print(response.statusCode);
+        throw Exception("Status inny niż 201");
       }
     } catch (e) {
-      throw Exception(e.toString());
+      print(e.toString());
+      return false;
     }
   }
 

@@ -13,7 +13,7 @@ import 'package:mybudget/services/NetworkHelper.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class StatisticsScreen extends StatefulWidget {
-  static const String id = '/';
+  static const String id = '/statistics_screen';
   static const int index = 0;
 
   @override
@@ -49,10 +49,23 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
   }
 
   void updateDates(DateTime _dateFrom, DateTime _dateTo) {
-    dateFrom = _dateFrom;
-    dateTo = _dateTo;
-    dateFromString = DateFormat('yyyy-MM-dd').format(_dateFrom);
-    dateToString = DateFormat('yyyy-MM-dd').format(_dateTo);
+      dateFrom = _dateFrom;
+      dateTo = _dateTo;
+      dateFromString = DateFormat('yyyy-MM-dd').format(_dateFrom);
+      dateToString = DateFormat('yyyy-MM-dd').format(_dateTo);
+      NetworkHelper.getStatistics(dateFromString, dateToString)
+          .then((statisticsFromServer) {
+        setState(() {
+          print('init state');
+          statistics = statisticsFromServer;
+          statistics.sumCategoryList.forEach((element) => {
+            data.putIfAbsent(
+                element.categoryName, () => element.amountCategory),
+            _colors
+                .add(Color(int.parse(element.color.replaceAll('#', '0xFF'))))
+          });
+        });
+      });
   }
 
   @override

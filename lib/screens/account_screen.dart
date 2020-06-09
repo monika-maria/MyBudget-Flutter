@@ -19,6 +19,7 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   Account account;
   final TextEditingController amountController = TextEditingController();
+  var amount = 0.0;
 
   @override
   void initState() {
@@ -121,19 +122,20 @@ class _AccountScreenState extends State<AccountScreen> {
               padding: EdgeInsets.symmetric(horizontal: 32.0),
               child: TextField(
                 controller: amountController,
+                keyboardType: TextInputType.number,
                 obscureText: false,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.transparent,
                     ),
-                    borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.transparent,
                     ),
-                    borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
                   ),
                   prefixIcon: Icon(
                     Icons.attach_money,
@@ -171,10 +173,18 @@ class _AccountScreenState extends State<AccountScreen> {
                 color: Color(0xFF660066),
                 splashColor: Colors.deepPurpleAccent,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40.0)),
-                onPressed: () {
-                  final double amount = double.parse(amountController.text);
-                  NetworkHelper.updateBalance(amount);
+                    borderRadius: BorderRadius.circular(20.0)),
+                onPressed: () async {
+                  amount = double.parse(amountController.text);
+                  print(amount);
+                  await NetworkHelper.updateBalance(amount);
+                  setState(() {
+                    NetworkHelper.getAccount().then((accountFromServer) {
+                      setState(() {
+                        account = accountFromServer;
+                      });
+                    });
+                  });
                 },
               ),
             ),

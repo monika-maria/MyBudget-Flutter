@@ -4,11 +4,12 @@ import 'package:mybudget/components/floating_action_button.dart';
 import 'package:mybudget/constants.dart';
 import 'package:mybudget/components/tab_bar_navigation.dart';
 import 'package:mybudget/models/Category.dart';
+import 'package:mybudget/models/Expense.dart';
 import 'package:mybudget/services/NetworkHelper.dart';
 
 class ExpenseAddScreen extends StatefulWidget {
   static const String id = '/expense_add_screen';
-  static const int index = 0;
+  static const int index = 1;
 
   @override
   _ExpenseAddScreenState createState() => _ExpenseAddScreenState();
@@ -22,6 +23,7 @@ class _ExpenseAddScreenState extends State<ExpenseAddScreen> {
   final TextEditingController amountController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+  String categoryId;
 
   @override
   void initState() {
@@ -54,12 +56,12 @@ class _ExpenseAddScreenState extends State<ExpenseAddScreen> {
     dateString = DateFormat('yyyy-MM-dd').format(_date);
   }
 
-  void updateCategory(int _categoryId) {
-    _category = categories
-        .where((element) => element.categoryId == _categoryId)
-        .toList()[0];
-//    _color = Color(int.parse(_category.color.replaceAll('#', '0xFF')));
-  }
+//  void updateCategory(int _categoryId) {
+//    _category = categories
+//        .where((element) => element.categoryId == _categoryId)
+//        .toList()[0];
+////    _color = Color(int.parse(_category.color.replaceAll('#', '0xFF')));
+//  }
 
   onChangeDropdownItem(Category category) {
     setState(() {
@@ -190,6 +192,7 @@ class _ExpenseAddScreenState extends State<ExpenseAddScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
                       controller: amountController,
+                      keyboardType: TextInputType.number,
                       obscureText: false,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
@@ -301,9 +304,12 @@ class _ExpenseAddScreenState extends State<ExpenseAddScreen> {
                 splashColor: Colors.deepPurpleAccent,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
-                onPressed: () {
-                  final double amount = double.parse(amountController.text);
-                  NetworkHelper.updateBalance(amount);
+                onPressed: () async {
+                  final newExpense = Expense(name: nameController.text, description: descriptionController.text,
+                      amount: double.parse(amountController.text),
+                      date: dateString,
+                      categoryId: _category.categoryId);
+                 await NetworkHelper.addExpence(newExpense);
                 },
               ),
             ),
