@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   tag: 'logo',
                   child: Container(
                     height: 200.0,
-//                    child: Image.asset('images/logo.png'),
+                    child: Icon(Icons.account_balance_wallet, color: Color(0xFFC0ADDB), size: 150.0,),
                   ),
                 ),
               ),

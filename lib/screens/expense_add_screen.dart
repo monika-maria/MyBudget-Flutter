@@ -309,7 +309,39 @@ class _ExpenseAddScreenState extends State<ExpenseAddScreen> {
                       amount: double.parse(amountController.text),
                       date: dateString,
                       categoryId: _category.categoryId);
-                 await NetworkHelper.addExpence(newExpense);
+                 final result = await NetworkHelper.addExpence(newExpense);
+                 final text = result ? 'Dodano!' : 'Wystąpił błąd.';
+
+                 showDialog(
+                   context: context,
+                   builder: (_) => AlertDialog(
+                   title: Text(
+                     'Dodawanie wydatku'
+                   ),
+                   content: Text(
+                     text,
+                   ),
+                   actions: <Widget>[
+                     FlatButton(
+                         child: Text(
+                             'OK',
+                         ),
+                          onPressed: (){
+                           Navigator.of(context).pop();
+                          },
+                         ),
+                   ],
+                 ),
+                 );
+                 setState(() {
+                   nameController.text = '';
+                   descriptionController.text = '';
+                   amountController.text = '';
+                   date = DateTime.now();
+                   dateString = DateFormat('yyyy-MM-dd').format(DateTime.now());
+                  _category = null;
+                  _color = Colors.white;
+                 });
                 },
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mybudget/components/rounded_button.dart';
 import 'package:mybudget/screens/registration_screen.dart';
 
@@ -49,18 +50,20 @@ class _WelcomeScreenState extends State<WelcomeScreen>
           children: <Widget>[
             Row(
               children: <Widget>[
-//                Hero(
-//                  tag: 'logo',
-//                  child: Container(
-//                    child: Image.asset('images/logo.png'),
-//                    height: 60.0,
-//                  ),
-//                ),
+                Hero(
+                  tag: 'logo',
+                  child: Container(
+                    child: Icon(Icons.account_balance_wallet, color: Color(0xFFC0ADDB), size: 50.0,),
+                    height: 60.0,
+                  ),
+                ),
+                SizedBox(width: 20.0,),
                 TypewriterAnimatedTextKit(
                   text: ['My Budget'],
                   textStyle: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
+                    color: Color(0xFF660066),
                   ),
                 ),
               ],

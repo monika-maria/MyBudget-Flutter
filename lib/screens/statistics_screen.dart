@@ -212,17 +212,17 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                     colorList:
                         _colors, // if not declared, random colors will be chosen
                     animationDuration: Duration(milliseconds: 1500),
-                    chartLegendSpacing: 32.0,
-                    chartRadius: MediaQuery.of(context).size.width /
-                        2.7, //determines the size of the chart
+//                    chartLegendSpacing: 32.0,
+                    chartRadius: MediaQuery.of(context).size.width / 2.0,
                     showChartValuesInPercentage: true,
                     showChartValues: true,
                     showChartValuesOutside: false,
+
                     chartValueBackgroundColor: Colors.grey[200],
                     showLegends: false,
 //                    legendPosition: LegendPosition
 //                        .right, //can be changed to top, left, bottom
-                    decimalPlaces: 1,
+                    decimalPlaces: 0,
                     showChartValueLabel: true,
                     initialAngle: 0,
                     chartValueStyle: defaultChartValueStyle.copyWith(

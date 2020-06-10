@@ -37,7 +37,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   tag: 'logo',
                   child: Container(
                     height: 200.0,
-                    //child: Image.asset('images/logo.png'),
+                    child: Icon(Icons.account_balance_wallet, color: Color(0xFF660066), size: 150.0,),
                   ),
                 ),
               ),
@@ -69,7 +69,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: 24.0,
               ),
               RoundedButton(
-                title: 'Register',
+                title: 'Zarejestuj',
                 colour: Color(0xFF660066),
                 onPressed: () async {
                   setState(() {
@@ -81,7 +81,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 //                        email: email, password: password);
 //                    if (newUser != null) {
 //                      NetworkHelper.createUser(email, password);
-//                      Navigator.pushNamed(context, LoginScreen.id);
+                      Navigator.pushNamed(context, LoginScreen.id);
 //                    }
 
                     setState(() {

@@ -49,29 +49,29 @@ class _AccountScreenState extends State<AccountScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
 //        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
+//          Expanded(
+//            flex: 1,
+//            child: SizedBox(
+//              height: 10.0,
+//            ),
+//          ),
           Expanded(
             flex: 1,
-            child: SizedBox(
-              height: 10.0,
-            ),
-          ),
-          Expanded(
-            flex: 5,
             child: account != null
                 ? Column(
                     children: <Widget>[
-                      Center(
-                        child: Text(
-                          'Nazwa:  ' + account.name,
-                          style: TextStyle(
-                            fontSize: 30,
-                            color: Color(
-                                0xFF660066), //Colors.black.withOpacity(0.4),
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'Lato',
-                          ),
-                        ),
-                      ),
+//                      Center(
+//                        child: Text(
+//                          'Nazwa:  ' + account.name,
+//                          style: TextStyle(
+//                            fontSize: 30,
+//                            color: Color(
+//                                0xFF660066), //Colors.black.withOpacity(0.4),
+//                            fontWeight: FontWeight.w600,
+//                            fontFamily: 'Lato',
+//                          ),
+//                        ),
+//                      ),
                       SizedBox(
                         height: 30.0,
                       ),
@@ -117,9 +117,9 @@ class _AccountScreenState extends State<AccountScreen> {
                   ),
           ),
           Expanded(
-            flex: 3,
+            flex: 1,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 32.0),
+              padding: EdgeInsets.symmetric(horizontal: 80.0),
               child: TextField(
                 controller: amountController,
                 keyboardType: TextInputType.number,
@@ -137,11 +137,11 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                   ),
-                  prefixIcon: Icon(
-                    Icons.attach_money,
-                    color: Colors.white,
-                  ),
-                  hintText: 'WPROWADŹ KWOTĘ',
+//                  prefixIcon: Icon(
+//                    Icons.attach_money,
+//                    color: Colors.white,
+//                  ),
+                  hintText: 'Dodaj kwotę',
                   hintStyle: TextStyle(
                     color: Colors.white,
 //                          fontSize: 15.0,
@@ -154,7 +154,7 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
           ),
           Expanded(
-            flex: 3,
+            flex: 1,
             child: Padding(
               padding: EdgeInsets.symmetric(
                 vertical: 40.0,
@@ -188,6 +188,10 @@ class _AccountScreenState extends State<AccountScreen> {
                 },
               ),
             ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(),
           ),
         ],
       ),
