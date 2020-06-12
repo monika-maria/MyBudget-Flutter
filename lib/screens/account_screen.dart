@@ -177,11 +177,54 @@ class _AccountScreenState extends State<AccountScreen> {
                 onPressed: () async {
                   amount = double.parse(amountController.text);
                   print(amount);
-                  await NetworkHelper.updateBalance(amount);
+                  final result = await NetworkHelper.updateBalance(amount);
+                  final text = result ? 'Dodano!' : 'Wystąpił błąd.';
+
+                  showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: Text(
+                          'Dodawanie przychodu',
+                          style: TextStyle(
+                            color: Color(0xFF660066),
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'Lato',
+                            fontSize: 24,
+                          ),
+                      ),
+                      content: Text(
+                        text,
+                        style: TextStyle(
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Lato',
+                          fontSize: 20,
+                        ),
+                      ),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text(
+                            'OK',
+                            style: TextStyle(
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Lato',
+                              fontSize: 20,
+                            ),
+                          ),
+                          onPressed: (){
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+
                   setState(() {
                     NetworkHelper.getAccount().then((accountFromServer) {
                       setState(() {
                         account = accountFromServer;
+                        amountController.text = '';
                       });
                     });
                   });

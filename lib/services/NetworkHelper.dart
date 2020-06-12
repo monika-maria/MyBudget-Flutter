@@ -70,7 +70,7 @@ class NetworkHelper {
         List<Expense> list = parseExpenses(utf8.decode(response.bodyBytes));
         return list;
       } else {
-        throw Exception("Failed to load Categories");
+        throw Exception("Failed to load.");
       }
     } catch (e) {
       throw Exception(e.toString());
@@ -95,10 +95,10 @@ class NetworkHelper {
         return true;
       } else {
         print(response.statusCode);
-        throw Exception("Kod inny niż 201");
+        throw Exception("Failed to send.");
       }
     } catch (e) {
-      return true;
+      return false;
     }
   }
 

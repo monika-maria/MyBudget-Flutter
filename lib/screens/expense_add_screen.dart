@@ -312,27 +312,45 @@ class _ExpenseAddScreenState extends State<ExpenseAddScreen> {
                  final result = await NetworkHelper.addExpence(newExpense);
                  final text = result ? 'Dodano!' : 'Wystąpił błąd.';
 
-                 showDialog(
-                   context: context,
-                   builder: (_) => AlertDialog(
-                   title: Text(
-                     'Dodawanie wydatku'
-                   ),
-                   content: Text(
-                     text,
-                   ),
-                   actions: <Widget>[
-                     FlatButton(
-                         child: Text(
-                             'OK',
-                         ),
+                  showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: Text(
+                        'Dodawanie wydatku',
+                        style: TextStyle(
+                          color: Color(0xFF660066),
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Lato',
+                          fontSize: 24,
+                        ),
+                      ),
+                      content: Text(
+                        text,
+                        style: TextStyle(
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Lato',
+                          fontSize: 20,
+                        ),
+                      ),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text(
+                            'OK',
+                            style: TextStyle(
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Lato',
+                              fontSize: 20,
+                            ),
+                          ),
                           onPressed: (){
-                           Navigator.of(context).pop();
+                            Navigator.of(context).pop();
                           },
-                         ),
-                   ],
-                 ),
-                 );
+                        ),
+                      ],
+                    ),
+                  );
                  setState(() {
                    nameController.text = '';
                    descriptionController.text = '';

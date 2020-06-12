@@ -22,6 +22,7 @@ class StatisticsScreen extends StatefulWidget {
 
 class _StatisticsScreenState extends State<StatisticsScreen> {
   Statistics statistics;
+  String amountAll = '0.00 zł';
   DateTime dateFrom = DateTime(DateTime.now().year, DateTime.now().month);
   DateTime dateTo = DateTime.now();
   String dateFromString = DateFormat('yyyy-MM-dd')
@@ -36,8 +37,8 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
     NetworkHelper.getStatistics(dateFromString, dateToString)
         .then((statisticsFromServer) {
       setState(() {
-        print('init state');
         statistics = statisticsFromServer;
+        amountAll = statistics.amountAll.toString() + ' zł';
         statistics.sumCategoryList.forEach((element) => {
               data.putIfAbsent(
                   element.categoryName, () => element.amountCategory),
@@ -56,8 +57,9 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
       NetworkHelper.getStatistics(dateFromString, dateToString)
           .then((statisticsFromServer) {
         setState(() {
-          print('init state');
           statistics = statisticsFromServer;
+          amountAll = statistics.amountAll.toString() + ' zł';
+          data = new Map();
           statistics.sumCategoryList.forEach((element) => {
             data.putIfAbsent(
                 element.categoryName, () => element.amountCategory),
@@ -79,28 +81,6 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           ),
         ),
         backgroundColor: kSecondaryColor,
-//        actions: <Widget>[
-//          IconButton(
-//            icon: Icon(
-//              Icons.calendar_today,
-//              color: Color(0xFF660066), //Colors.white,
-//              size: 30.0,
-//            ),
-//            onPressed: () async {
-//              final List<DateTime> picked = await DateRagePicker.showDatePicker(
-//                  context: context,
-//                  initialFirstDate: dateFrom,
-//                  initialLastDate: dateTo,
-//                  firstDate: DateTime(2015),
-//                  lastDate: DateTime(2090));
-//              if (picked != null && picked.length == 2) {
-//                setState(() {
-//                  updateDates(picked.elementAt(0), picked.elementAt(1));
-//                });
-//              }
-//            },
-//          ),
-//        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -161,6 +141,37 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
             ),
           ),
           Expanded(
+            flex: 3,
+            child: Container(
+              margin: EdgeInsets.all(15.0),
+              decoration: BoxDecoration(
+                color: kPrimaryColor,
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+//                  Icon(
+//                    Icons.account_balance_wallet,
+//                    color: Color(0xFF660066), //Colors.white,
+//                    size: 30.0,
+//                  ),
+                  SizedBox(
+                    width: 20.0,
+                  ),
+                  Text(
+                    'Wydano: ' + amountAll,
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Color(0xFF660066),
+                      fontFamily: 'Lato',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
             flex: 5,
             child: statistics != null
                 ? ListView.builder(
@@ -209,19 +220,15 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
             child: (data != null && data.isNotEmpty)
                 ? PieChart(
                     dataMap: data,
-                    colorList:
-                        _colors, // if not declared, random colors will be chosen
+                    colorList: _colors,
                     animationDuration: Duration(milliseconds: 1500),
-//                    chartLegendSpacing: 32.0,
-                    chartRadius: MediaQuery.of(context).size.width / 2.0,
+                    chartRadius: MediaQuery.of(context).size.width / 2.2,
                     showChartValuesInPercentage: true,
                     showChartValues: true,
                     showChartValuesOutside: false,
 
                     chartValueBackgroundColor: Colors.grey[200],
                     showLegends: false,
-//                    legendPosition: LegendPosition
-//                        .right, //can be changed to top, left, bottom
                     decimalPlaces: 0,
                     showChartValueLabel: true,
                     initialAngle: 0,
